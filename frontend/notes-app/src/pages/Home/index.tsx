@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar";
 import NoteCard from "../../components/NoteCard";
-import { FaPlus } from "react-icons/fa6";
+import NoteModal from "../../components/NoteModal";
 
 const Home = () => {
   const notes = [
@@ -26,7 +26,14 @@ const Home = () => {
       title: "Meeting Notes",
       date: "Oct 19, 2024",
       content: "Discuss project deadlines and milestones.",
-      tags: ["meeting", "project", "deadlines"],
+      tags: [
+        "meeting",
+        "project",
+        "deadlines",
+        "meeting",
+        "project",
+        "deadlines",
+      ],
     },
     {
       title: "Meeting Notes",
@@ -40,13 +47,11 @@ const Home = () => {
     <div className="relative  min-h-screen">
       <Navbar inDashboard />
       <div className="flex gap-2 flex-wrap p-3 justify-center">
-        {notes.map((note) => (
-          <NoteCard {...note} key={note.content} />
+        {notes.map((note, index) => (
+          <NoteCard {...note} key={`${note.content}${index}`} />
         ))}
       </div>
-      <div className="bg-primary hover:bg-blue-600 cursor-pointer w-16 h-16 rounded-lg flex justify-center items-center absolute right-2 bottom-2">
-        <FaPlus className="text-white" size={22} />
-      </div>
+      <NoteModal />
     </div>
   );
 };

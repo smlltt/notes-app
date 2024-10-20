@@ -48,12 +48,12 @@ const SearchBarForm = () => {
           <FaX
             type="button"
             onClick={handleClearInput}
-            className="absolute right-10 top-3 cursor-pointer text-slate-400 hover:text-black"
+            className="absolute right-10 top-4 cursor-pointer text-slate-500 hover:text-black"
           />
         )}
         <button
           type="submit"
-          className="absolute right-4 top-3 cursor-pointer text-slate-400 hover:text-black"
+          className="absolute right-4 top-4 cursor-pointer text-slate-500 hover:text-black"
         >
           <FaMagnifyingGlass />
         </button>
