@@ -7,6 +7,7 @@ import {
   TypedRequest,
   CreateAccountRequestBody,
   LoginRequestBody,
+  AuthenticatedRequest,
 } from "../types";
 import { Response } from "express";
 
@@ -85,7 +86,7 @@ export const login = async (
         .json({ error: true, message: "No account with this email." });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password); 
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (isPasswordValid) {
       const accessToken = jwt.sign(
@@ -106,6 +107,31 @@ export const login = async (
         .status(409)
         .json({ error: true, message: "Invalid password." });
     }
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+export const getUser = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<any> => {
+  const { user } = req.user;
+  const userDbData = await User.findOne({ _id: user._id });
+  if (!userDbData) {
+    return res.sendStatus(401);
+  }
+  try {
+    return res.json({
+      error: false,
+      user: {
+        fullName: userDbData.fullName,
+        email: userDbData.email,
+        _id: userDbData._id,
+        createdAt: userDbData.createdAt,
+      },
+      message: "User retrieved successfully",
+    });
   } catch (error) {
     res.status(500).json({ message: "Internal server error." });
   }
