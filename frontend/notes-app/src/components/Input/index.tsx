@@ -9,6 +9,7 @@ interface InputProps {
     HTMLInputElement
   >;
   hideError?: boolean;
+  backendError?: string;
 }
 
 const Input = ({

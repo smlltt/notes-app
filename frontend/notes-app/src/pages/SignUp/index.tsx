@@ -3,6 +3,7 @@ import AuthCard from "../../components/AuthCard";
 import SignUpForm from "../../components/Forms/SignUpForm";
 
 const SignUp = () => {
+  //TODO refactor using an outlet
   return (
     <>
       <Navbar />
