@@ -33,6 +33,7 @@ const Home = () => {
         "meeting",
         "project",
         "deadlines",
+        "deadlines",
       ],
     },
     {
@@ -44,12 +45,14 @@ const Home = () => {
     },
   ];
   return (
-    <div className="relative  min-h-screen">
+    <div className="relative min-h-screen">
       <Navbar inDashboard />
-      <div className="flex gap-2 flex-wrap p-3 justify-center">
-        {notes.map((note, index) => (
-          <NoteCard {...note} key={`${note.content}${index}`} />
-        ))}
+      <div className=" max-w-7xl mx-auto">
+        <div className="flex gap-2 flex-wrap justify-center xl:justify-start">
+          {notes.map((note, index) => (
+            <NoteCard {...note} key={`${note.content}${index}`} />
+          ))}
+        </div>
       </div>
       <NoteModal />
     </div>
